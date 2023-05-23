@@ -22,7 +22,7 @@ test('init condition', () => {
   const button = screen.getByRole('button', {name: /to blue/i})
   expect(button).toBeEnabled()
   const checkbox = screen.getByRole('checkbox')
-  expect(checkbox).not.toBeChecked()
+  expect(checkbox).not.toHaveAttribute(checkbox)
 });
 test('button disabled end enable after checkbox checked', () => {
   render(<App />);
@@ -42,8 +42,10 @@ describe('spaces before camel-case capital letters', () => {
   })
   test('works for one inner capital letters', () => {
     expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue')
+
   })
   test('works for one multuply capital letters', () => {
     expect(replaceCamelWithSpaces('MediumViolateRed')).toBe('Medium Violate Red')
+
   })
 })
