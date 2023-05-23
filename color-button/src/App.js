@@ -4,10 +4,9 @@ import { useState } from 'react';
 
 function App() {
 const [color, setColor] = useState('red')
-const [text, setText] = useState('to blue')
+const text = color === 'red' ? 'blue' : 'red'
 const onClick = () => {
-  setColor('blue')
-  setText('to red')
+  setColor(color ===  'blue' ? 'red' : 'blue')
 }
   return (
     <div className="App">
@@ -16,7 +15,7 @@ const onClick = () => {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <button style={{backgroundColor: color}} onClick={onClick}>{text}</button>
+        <button style={{backgroundColor: color}} onClick={onClick}>to {text}</button>
       </header>
     </div>
   );
