@@ -1,7 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+const [color, setColor] = useState('red')
+const [text, setText] = useState('to blue')
+const onClick = () => {
+  setColor('blue')
+  setText('to red')
+}
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +16,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button style={{backgroundColor: color}} onClick={onClick}>{text}</button>
       </header>
     </div>
   );
