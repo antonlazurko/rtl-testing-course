@@ -24,10 +24,12 @@ test('init condition', () => {
 });
 test('button disabled end enable after checkbox checked', () => {
   render(<App />);
-  const button = screen.getByRole('button', {name: /to blue/i})
-  const checkbox = screen.getByRole('checkbox')
+  const button = screen.getByRole('button')
+  const checkbox = screen.getByRole('checkbox', {name: 'disable btn'})
   fireEvent.click(checkbox)
   expect(button).toBeDisabled()
+  expect(button).toHaveStyle('background-color: grey')
   fireEvent.click(checkbox)
   expect(button).toBeEnabled()
+  expect(button).toHaveStyle('background-color: red')
 });

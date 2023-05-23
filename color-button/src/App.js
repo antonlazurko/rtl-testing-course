@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 function App() {
 const [color, setColor] = useState('red')
-const [enable, setEnable] = useState(false)
+const [disabled, setDisabled] = useState(false)
 const text = color === 'red' ? 'blue' : 'red'
 const onClick = () => {
   setColor(color ===  'blue' ? 'red' : 'blue')
@@ -16,8 +16,11 @@ const onClick = () => {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <button style={{backgroundColor: color}} disabled={enable} onClick={onClick}>to {text}</button>
-        <input type="checkbox" value={enable} onChange={() => setEnable(!enable)}/>
+        <button style={{backgroundColor: disabled ? 'grey' : color}} disabled={disabled} onClick={onClick}>to {text}</button>
+        <label>
+          disable btn
+          <input type="checkbox" value={disabled} onChange={() => setDisabled(!disabled)}/>
+        </label>
       </header>
     </div>
   );
