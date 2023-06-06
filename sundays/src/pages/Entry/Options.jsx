@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import Row from 'react-bootstrap/Row'
 
 import { ScoopOption } from "./ScoopOption"
+import { ToppingOption } from "./ToppingOption"
 
 export const Options = ({optionType}) => {
   const [items, setItems] = useState([])
@@ -12,7 +13,7 @@ export const Options = ({optionType}) => {
 
   }, [optionType])
 
-const ItemComponent = optionType === 'scoops' ? ScoopOption : null
+const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption
 
 const optionitems = items?.map(({name, imagePath}) => (
 <ItemComponent

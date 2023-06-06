@@ -21,7 +21,6 @@ function App() {
         </a>
       </header>
       <SummaryForm/>
-      <Options optionType='scoops'/>
     </div>
   );
 }
