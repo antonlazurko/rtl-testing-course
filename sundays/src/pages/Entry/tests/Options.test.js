@@ -11,10 +11,10 @@ test('displays images', async()=>{
 
     // confirm alt text of img
     const altText = scoopsImages.map(el => el.alt)
-    expect(altText).toEqual(['chocolate', 'vanilla'])
+    expect(altText).toEqual(['Chocolate scoop', 'Vanilla scoop'])
 })
 test('displays images topping', async()=>{
-    render(<Options optionType="topping" />)
+    render(<Options optionType="toppings" />)
 
     //find images
     const toppingsImages = await screen.findAllByRole('img', {name: /topping$/i})
@@ -22,5 +22,5 @@ test('displays images topping', async()=>{
 
     // confirm alt text of img
     const altText = toppingsImages.map(el => el.alt)
-    expect(altText).toEqual(['Cherries', 'M&Ms', 'Hot fudge'])
+    expect(altText).toEqual(['Cherries topping', 'M&Ms topping', 'Hot fudge topping'])
 })
