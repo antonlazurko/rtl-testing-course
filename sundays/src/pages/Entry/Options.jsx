@@ -9,34 +9,42 @@ import { formatCurrency } from "../../utils"
 import { useOrderDetails } from "../../contexts/OrderDetails"
 
 export const Options = ({optionType}) => {
-  const [items, setItems] = useState([])
-  const [error, setError] = useState(false)
-  const {totals} = useOrderDetails()
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(false);
+  const { totals } = useOrderDetails();
 
+  // optionType is 'scoops' or 'toppings
   useEffect(() => {
-    axios.get(`http://localhost:3030/${optionType}`)
-      .then(res => setItems(res.data))
-      .catch(error=>setError(true))
+    axios
+      .get(`http://localhost:3030/${optionType}`)
+      .then((response) => setItems(response.data))
+      .catch((error) => setError(true));
+  }, [optionType]);
 
-  }, [optionType])
+  if (error) {
+    // @ts-ignore
+    return <AlertBanner />;
+  }
 
-  const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption
-  const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase()
+  const ItemComponent = optionType === "scoops" ? ScoopOption : ToppingOption;
+  const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
 
-  const optionitems = items?.map(({name, imagePath}) => (
+  const optionItems = items.map((item) => (
     <ItemComponent
-      key={name}
-      name={name}
-      imagePath={imagePath}/>)
-  )
+      key={item.name}
+      name={item.name}
+      imagePath={item.imagePath}
+    />
+  ));
+
   return (
-    error ? <AlertBanner/> : (
-      <>
-        <h2>{title}</h2>
-        <p>{formatCurrency(pricePerItem[optionType])}</p>
-        <p>{title} : {formatCurrency(totals[optionType])}</p>
-        <Row>{optionitems}</Row>
-      </>
-    )
-  )
+    <>
+      <h2>{title}</h2>
+      <p>{formatCurrency(pricePerItem[optionType])} each</p>
+      <p>
+        {title} total: {formatCurrency(totals[optionType])}
+      </p>
+      <Row>{optionItems}</Row>
+    </>
+  );
 }
