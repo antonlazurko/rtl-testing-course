@@ -4,7 +4,7 @@ import { rest } from "msw";
 import {server} from '../../../mocks/server'
 
 
-import { OrderEntry } from '../OrderEntry';
+import OrderEntry from '../OrderEntry';
 
 test.only('handles error for scoops and toppings routes', async() => {
     server.resetHandlers(
