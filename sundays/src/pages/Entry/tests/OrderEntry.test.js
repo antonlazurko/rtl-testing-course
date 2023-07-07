@@ -19,7 +19,7 @@ test.only('handles error for scoops and toppings routes', async() => {
                 )
         })
     )
-    render(<OrderEntry/>)
+    render(<OrderEntry setOrderPhase={jest.fn()}/>)
     await waitFor(async () => {
         const alert = await screen.findAllByRole('alert')
         expect(alert).toHaveLength(2)}
